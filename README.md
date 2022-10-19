@@ -1,4 +1,3 @@
-# Ex-04-Multivariate-Analysis
 
 AIM: To apply multivariate analysis on a give data set.
 
@@ -157,3 +156,7 @@ output: image
 RESULT:
 
 Thus we have applied the multiivariate analysis sucessfully
+
+
+
+
