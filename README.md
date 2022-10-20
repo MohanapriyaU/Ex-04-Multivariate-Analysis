@@ -1,162 +1,85 @@
+a# STEP 8
+Save the final data set into the file
 
-AIM: To apply multivariate analysis on a give data set.
-
-Algorithm:
-
-1.start
-
-2.read the dta from the file
-
-3.clean the data a)remove outliers b)fill the null value or drop the column
-
-4.perform multivariate analysis a)scatter plot b)box plot c)heat map
-
-Program: read and cleaned the null value: code: import pandas as pd
-
-df=pd.read_csv("/content/SuperStore.csv")
-
-df['Postal Code']=df['Postal Code'].fillna(df['Postal Code'].mode()[0])
-
-df.isnull().sum()
-
-image
-
-scatter plot:
-
-df.dtypes:
-
-code:
-
-df.dtype
-
-output:
-
-image
-
-kurtosis:
-
-df.kurtosis()
-
-code:
-
-output:
-
-image
-
-scatter plot:
-
-code:
+## PROGRAM
+```
+Name : Mohanapriya U
+Register Number : 212220040091
 
 import pandas as pd
-
-import seaborn as sns
-
-sns.boxplot(df['Sales'],df['Postal Code'])
-
-output:
-
-image
-
-Bar plot:
-
-code:
-
-sns.barplot(x=df["Sales"],y=df["Postal Code"],data=df)
-
-image
-
-bar plot
-
-code:
-
-import pandas as pd
-
-import seaborn as sns
-
-import matplotlib.pyplot as plt
-
-states=df.loc[:,["Postal Code","Sales"]]
-
-states=states.groupby(by=["Postal Code"]).sum().sort_values(by="Sales")
-
-plt.figure(figsize=(17,7))
-
-sns.barplot(x=states.index,y="Sales",data=states)
-
-plt.xticks(rotation = 90)
-
-plt.xlabel=("Postal Code")
-
-plt.ylabel=("Sales")
-
-plt.show()
-
-output:
-
-image
-
-code:
-
-import pandas as pd
-
-import seaborn as sns import matplotlib.pyplot as plt
-
-states=df.loc[:,["State","Postal Code"]]
-
-states=states.groupby(by=["State"]).sum().sort_values(by="Postal Code")
-
-plt.figure(figsize=(17,7))
-
-sns.barplot(x=states.index,y="Postal Code",data=states)
-
-plt.xticks(rotation = 90)
-
-plt.xlabel=("Sales")
-
-plt.ylabel=("Postal Code")
-
-plt.show()
-
-output:
-
-image
-
-corr:
-
-df.corr()
-
-output:
-
-image
-
-Heatmap:
-
-code:
-
 import numpy as np
-
-import seaborn as sn
-
+import seaborn as sns
 import matplotlib.pyplot as plt
-
-data=pd.read_csv("/content/SuperStore.csv")
-
-data = np.random.randint(low = 1, high = 100, size = (10, 10))
-
-print("The data to be plotted:\n")
-
-print(data)
-
-hm = sn.heatmap(data = data)
-
+df=pd.read_csv("SuperStore.csv")
+df
+df.info()
+df.describe()
+df.isnull().sum()
+df['Postal Code'] = df["Postal Code"].fillna(df['Postal Code'].mode()[0])
+df.isnull().sum()
+df.dtypes
+sns.scatterplot(df['Row ID'],df['Sales'])
+states=df.loc[:,["State","Sales"]]
+states=states.groupby(by=["State"]).sum().sort_values(by="Sales")
+plt.figure(figsize=(17,7))
+sns.barplot(x=states.index,y="Sales",data=states)
+plt.xticks(rotation = 90)
+plt.xlabel=("STATES")
+plt.ylabel=("SALES")
 plt.show()
+states=df.loc[:,["State","Row ID"]]
+states=states.groupby(by=["State"]).sum().sort_values(by="Row ID")
+plt.figure(figsize=(17,7))
+sns.barplot(x=states.index,y="Row ID",data=states)
+plt.xticks(rotation = 90)
+plt.xlabel=("STATES")
+plt.ylabel=("ROW ID")
+plt.show()
+states=df.loc[:,["Segment","Row ID"]]
+states=states.groupby(by=["Segment"]).sum().sort_values(by="Row ID")
+sns.barplot(x=states.index,y="Row ID",data=states)
+plt.xticks(rotation = 90)
+plt.xlabel=("SEGMENT")
+plt.ylabel=("ROW ID")
+plt.show()
+sns.barplot(df['Sales'],df['Ship Mode'],hue=df['Region'])
+df.corr()
+sns.heatmap(df.corr(),annot=True)
+```
+## OUTPUT
 
-output: image
+### DATA
+![ds1](https://user-images.githubusercontent.com/93427345/192081855-93a0a135-2e83-426c-bf0b-9a5cee4417ea.PNG)
 
-RESULT:
+### Data.info
+![ds2](https://user-images.githubusercontent.com/93427345/192081863-502f4e6f-dbc0-43ac-a56a-b67cdfdeaacf.PNG)
 
-Thus we have applied the multiivariate analysis sucessfully
+### Data.describe
+![ds3](https://user-images.githubusercontent.com/93427345/192081866-1eaf8f71-77c1-4d44-9fbd-badc5eb54976.PNG)
 
+### Checking the null values and Cleaning it
+![ds4](https://user-images.githubusercontent.com/93427345/192081868-bb1c6a2b-c388-4297-8f9d-062a9a6382fa.PNG)
 
+![ds5](https://user-images.githubusercontent.com/93427345/192081870-5a17f340-ca8e-4f27-9d52-00c8c5b6f0b0.PNG)
 
+### DATA TYPES
+![ds6](https://user-images.githubusercontent.com/93427345/192081875-cd5f61b7-a6e7-4b7d-a747-dc97b19dea7a.PNG)
 
+### SCATTER PLOT
+![ds7](https://user-images.githubusercontent.com/93427345/192081882-1b088cb0-ee09-4334-8fa6-77464adbf84a.PNG)
+
+### BAR PLOT
+![ds8](https://user-images.githubusercontent.com/93427345/192081890-828a4d08-bdce-4c45-b4cc-902510b8e335.PNG)
+![ds9](https://user-images.githubusercontent.com/93427345/192081895-94ab27ad-2785-4f74-b928-efb3244f4f07.PNG)
+![ds10](https://user-images.githubusercontent.com/93427345/192081899-53b88f37-48b0-4e53-9f2c-8ad7cc70fc20.PNG)
+![ds11](https://user-images.githubusercontent.com/93427345/192081915-7ed8001c-8c90-46a6-a7d9-d94d5c680e5d.PNG)
+
+### CORRELATION COEFFICIENT INTERPRETATION
+![ds12](https://user-images.githubusercontent.com/93427345/192081924-97ec7304-77c5-48d0-be48-1c62862c7cef.PNG)
+
+### HEATMAP
+![ds13](https://user-images.githubusercontent.com/93427345/192081930-9ee4f96a-9dad-47e3-be5a-7560aae588e1.PNG)
+
+## RESULT
+Thus we have read the given data and performed the multivariate analysis with different types of
+plots.
